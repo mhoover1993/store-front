@@ -1,16 +1,54 @@
-# React + Vite
+🌾 Hearth & Crumb: Premium E-Commerce SPA Mockup
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A high-performance, state-driven React application designed for premium retail and artisan brands.
 
-Currently, two official plugins are available:
+Engineered by Blackwood Cybernetics
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Building scalable, modern digital products for ambitious businesses.
 
-## React Compiler
+📋 Overview
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This project is a functional frontend mockup of a premium e-commerce storefront. It was built to demonstrate modern Single Page Application (SPA) architecture, state-based UI updates, and ultra-high-end editorial design.
 
-## Expanding the Oxlint configuration
+While the example brand is an artisan bakery ("Hearth & Crumb"), the underlying architecture and component structure are designed to be easily adapted for boutique fashion, specialty coffee roasters, high-end home goods, or any brand requiring a sophisticated digital presence.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+⚡ Technical Architecture
+
+This application was built entirely using React (Functional Components & Hooks) and styled with Tailwind CSS. It bypasses traditional multi-page website constraints to deliver an instantaneous, app-like experience.
+
+Core Features:
+
+State-Based Routing: Navigation between the Shop, Journal, and About views is handled entirely via React state (currentPage). This means zero page reloads, providing a lightning-fast user experience.
+
+Dynamic Cart State: The shopping cart is a fully functional React state array. It dynamically calculates subtotals and updates the global navigation badge instantly when items are added.
+
+Interactive UI Patterns: Features a slide-out cart drawer, sticky translucent headers (backdrop-blur), and subtle hover micro-interactions powered by Tailwind.
+
+Modern Iconography: Utilizes lucide-react for clean, scalable vector graphics.
+
+🎨 The "Editorial" Design System
+
+The visual identity of this project deliberately moves away from generic e-commerce templates, aiming for an aesthetic similar to Kinfolk magazine.
+
+Typography: A high-contrast pairing of elegant serif fonts for headings and highly legible sans-serifs for body copy, emphasizing generous line-height and readability.
+
+Color Palette: A warm, organic, earthy palette (stone, cream, charcoal) to evoke a premium, handmade feel.
+
+Asymmetric Layouts: The About page specifically features an asymmetric masonry-style gallery to break the rigid grid and create a more organic, "behind-the-scenes" intimacy.
+
+🛠️ Local Development
+
+To run this project locally, simply clone the repository and open the index file in your browser. (Note: As this is a single-file React prototype generated for demonstration, it may require a simple local server or CodeSandbox to execute the JSX depending on your local environment setup).
+
+# Clone the repository
+git clone https://github.com/[YourUsername]/hearth-and-crumb-ecommerce.git
+
+# Navigate to the project directory
+cd hearth-and-crumb-ecommerce
+
+
+📈 About Blackwood Cybernetics
+
+Blackwood Cybernetics specializes in transitioning small and medium businesses away from slow, generic templates and into modern, scalable web applications. We build digital systems focused on conversion, speed, and premium user experience.
+
+Contact us for a project inquiry
