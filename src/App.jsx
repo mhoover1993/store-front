@@ -40,7 +40,38 @@ const PRODUCTS = [
   },
 ];
 
+const ARTICLES = [
+  {
+    id: 1,
+    category: "Process",
+    date: "October 12, 2026",
+    readTime: "4 min read",
+    title: "The Alchemy of Wild Yeast",
+    excerpt: "Understanding the intricate balance of temperature, time, and flour that gives our sourdough its signature tang and open crumb.",
+    image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    id: 2,
+    category: "Ingredients",
+    date: "September 28, 2026",
+    readTime: "3 min read",
+    title: "Sourcing Heritage Grains",
+    excerpt: "A journey to the local mills that provide our organic stoneground flours, and why grain diversity matters for flavor.",
+    image: "https://images.unsplash.com/photo-1596706911674-897db9ed3fc4?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    id: 3,
+    category: "Community",
+    date: "September 15, 2026",
+    readTime: "5 min read",
+    title: "Morning Rituals at the Bakery",
+    excerpt: "Before the sun rises and the doors open, our bakers are already deep into the meditative rhythm of shaping and scoring.",
+    image: "https://images.unsplash.com/photo-1505253758473-96b7015fcd40?auto=format&fit=crop&q=80&w=800"
+  }
+];
+
 export default function App() {
+  const [currentView, setCurrentView] = useState('home');
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cart, setCart] = useState([]);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -97,13 +128,13 @@ export default function App() {
           </div>
 
           <div className="hidden md:flex flex-1 gap-8 text-sm tracking-wide text-neutral-500">
-            <a href="#shop" className="hover:text-neutral-900 transition-colors duration-300">Shop</a>
-            <a href="#about" className="hover:text-neutral-900 transition-colors duration-300">About</a>
-            <a href="#journal" className="hover:text-neutral-900 transition-colors duration-300">Journal</a>
+            <a href="#shop" onClick={(e) => { e.preventDefault(); setCurrentView('home'); window.scrollTo(0, 0); }} className="hover:text-neutral-900 transition-colors duration-300">Shop</a>
+            <a href="#about" onClick={(e) => { e.preventDefault(); setCurrentView('home'); window.scrollTo(0, 0); }} className="hover:text-neutral-900 transition-colors duration-300">About</a>
+            <a href="#journal" onClick={(e) => { e.preventDefault(); setCurrentView('journal'); window.scrollTo(0, 0); }} className="hover:text-neutral-900 transition-colors duration-300">Journal</a>
           </div>
 
           <div className="flex-1 flex justify-center">
-            <a href="#" className="text-2xl font-light tracking-[0.2em] uppercase text-neutral-900">
+            <a href="#" onClick={(e) => { e.preventDefault(); setCurrentView('home'); window.scrollTo(0, 0); }} className="text-2xl font-light tracking-[0.2em] uppercase text-neutral-900">
               Lumina
             </a>
           </div>
@@ -200,101 +231,146 @@ export default function App() {
         </div>
       </div>
 
-      {/* Hero Section */}
-      <section className="pt-24 md:pt-32 pb-16 md:pb-24 px-6 md:px-12 max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-center">
-          <div className="flex-1 space-y-8 md:pr-12 text-center md:text-left z-10">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-tight text-neutral-900 leading-[1.1]">
-              Crafted slowly. <br className="hidden md:block"/>Enjoyed instantly.
-            </h1>
-            <p className="text-lg md:text-xl text-neutral-600 font-light max-w-md mx-auto md:mx-0 leading-relaxed">
-              Artisan sourdough, pastries, and pantry staples baked fresh every morning in small batches.
-            </p>
-            <div className="pt-4">
-              <a href="#shop" className="inline-flex items-center justify-center px-8 py-4 bg-[#8BA88E] text-white rounded-full text-sm font-medium tracking-wide hover:bg-[#7a947d] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
-                Shop the Collection
-              </a>
-            </div>
-          </div>
-          <div className="flex-1 w-full">
-            <div className="relative aspect-[4/5] md:aspect-[3/4] overflow-hidden bg-neutral-200">
-              <img 
-                src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=1200" 
-                alt="Fresh artisan bread" 
-                className="w-full h-full object-cover object-center"
-              />
-              <div className="absolute inset-0 bg-neutral-900/5 mix-blend-multiply pointer-events-none" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Shop Grid Section */}
-      <section id="shop" className="py-20 md:py-32 px-6 md:px-12 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-end justify-between mb-16 border-b border-neutral-200 pb-8">
-            <h2 className="text-3xl md:text-4xl font-light tracking-wide">Daily Offerings</h2>
-            <a href="#" className="hidden md:inline-flex items-center text-sm font-medium tracking-wide uppercase text-neutral-500 hover:text-neutral-900 transition-colors group">
-              View All <ArrowRight size={16} strokeWidth={1.5} className="ml-2 group-hover:translate-x-1 transition-transform" />
-            </a>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
-            {PRODUCTS.map(product => (
-              <div key={product.id} className="group cursor-pointer flex flex-col">
-                <div className="relative aspect-[4/5] overflow-hidden bg-neutral-100 mb-6">
-                  <img 
-                    src={product.image} 
-                    alt={product.name} 
-                    className="w-full h-full object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-105"
-                  />
-                  {/* Quick Add Overlay */}
-                  <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-8 pointer-events-none">
-                    <button 
-                      onClick={(e) => { e.stopPropagation(); addToCart(product); }}
-                      className="pointer-events-auto px-6 py-3 bg-white text-neutral-900 rounded-full text-sm font-medium tracking-wide shadow-lg hover:bg-neutral-900 hover:text-white transition-colors duration-300 flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 ease-out"
-                    >
-                      Quick Add 
-                    </button>
+      {/* Main Content Area */}
+      <main>
+        {currentView === 'home' ? (
+          <>
+            {/* Hero Section */}
+            <section className="pt-24 md:pt-32 pb-16 md:pb-24 px-6 md:px-12 max-w-7xl mx-auto">
+              <div className="flex flex-col md:flex-row gap-12 md:gap-16 items-center">
+                <div className="flex-1 space-y-8 md:pr-12 text-center md:text-left z-10">
+                  <h1 className="text-5xl md:text-6xl lg:text-7xl font-light tracking-tight text-neutral-900 leading-[1.1]">
+                    Crafted slowly. <br className="hidden md:block"/>Enjoyed instantly.
+                  </h1>
+                  <p className="text-lg md:text-xl text-neutral-600 font-light max-w-md mx-auto md:mx-0 leading-relaxed">
+                    Artisan sourdough, pastries, and pantry staples baked fresh every morning in small batches.
+                  </p>
+                  <div className="pt-4">
+                    <a href="#shop" onClick={(e) => { e.preventDefault(); document.getElementById('shop').scrollIntoView({ behavior: 'smooth' }); }} className="inline-flex items-center justify-center px-8 py-4 bg-[#8BA88E] text-white rounded-full text-sm font-medium tracking-wide hover:bg-[#7a947d] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300">
+                      Shop the Collection
+                    </a>
                   </div>
                 </div>
-                <div className="flex justify-between items-start">
-                  <h3 className="text-lg font-medium text-neutral-900 tracking-wide group-hover:text-[#8BA88E] transition-colors">{product.name}</h3>
-                  <span className="text-neutral-500 font-light">${product.price.toFixed(2)}</span>
+                <div className="flex-1 w-full">
+                  <div className="relative aspect-[4/5] md:aspect-[3/4] overflow-hidden bg-neutral-200">
+                    <img 
+                      src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=1200" 
+                      alt="Fresh artisan bread" 
+                      className="w-full h-full object-cover object-center"
+                    />
+                    <div className="absolute inset-0 bg-neutral-900/5 mix-blend-multiply pointer-events-none" />
+                  </div>
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+            </section>
 
-      {/* Artisan Story / Bento Box */}
-      <section id="about" className="py-20 md:py-32 px-6 md:px-12 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
-          
-          <div className="md:col-span-5 flex flex-col justify-center space-y-8 pr-0 md:pr-8">
-            <h2 className="text-3xl md:text-4xl font-light tracking-wide leading-tight">
-              A devotion to the <br/> art of baking.
-            </h2>
-            <p className="text-neutral-600 font-light leading-relaxed">
-              We believe in the power of time. 100% organic flour, naturally leavened, and given a 48-hour cold fermentation. The result is bread that is deeply flavorful, highly digestible, and unmistakably ours.
-            </p>
-            <a href="#" className="inline-flex items-center text-sm font-medium tracking-wide uppercase text-neutral-900 hover:text-[#8BA88E] transition-colors group w-fit">
-              Read our story <ArrowRight size={16} strokeWidth={1.5} className="ml-2 group-hover:translate-x-1 transition-transform" />
-            </a>
-          </div>
+            {/* Shop Grid Section */}
+            <section id="shop" className="py-20 md:py-32 px-6 md:px-12 bg-white">
+              <div className="max-w-7xl mx-auto">
+                <div className="flex items-end justify-between mb-16 border-b border-neutral-200 pb-8">
+                  <h2 className="text-3xl md:text-4xl font-light tracking-wide">Daily Offerings</h2>
+                  <a href="#" onClick={(e) => e.preventDefault()} className="hidden md:inline-flex items-center text-sm font-medium tracking-wide uppercase text-neutral-500 hover:text-neutral-900 transition-colors group">
+                    View All <ArrowRight size={16} strokeWidth={1.5} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  </a>
+                </div>
 
-          <div className="md:col-span-7 grid grid-cols-2 gap-4 md:gap-6">
-            <div className="aspect-square bg-neutral-200 overflow-hidden">
-               <img src="https://images.unsplash.com/photo-1596706911674-897db9ed3fc4?auto=format&fit=crop&q=80&w=800" alt="Flour dusting" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+                  {PRODUCTS.map(product => (
+                    <div key={product.id} className="group cursor-pointer flex flex-col">
+                      <div className="relative aspect-[4/5] overflow-hidden bg-neutral-100 mb-6">
+                        <img 
+                          src={product.image} 
+                          alt={product.name} 
+                          className="w-full h-full object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-105"
+                        />
+                        {/* Quick Add Overlay */}
+                        <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-8 pointer-events-none">
+                          <button 
+                            onClick={(e) => { e.stopPropagation(); addToCart(product); }}
+                            className="pointer-events-auto px-6 py-3 bg-white text-neutral-900 rounded-full text-sm font-medium tracking-wide shadow-lg hover:bg-neutral-900 hover:text-white transition-colors duration-300 flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 ease-out"
+                          >
+                            Quick Add 
+                          </button>
+                        </div>
+                      </div>
+                      <div className="flex justify-between items-start">
+                        <h3 className="text-lg font-medium text-neutral-900 tracking-wide group-hover:text-[#8BA88E] transition-colors">{product.name}</h3>
+                        <span className="text-neutral-500 font-light">${product.price.toFixed(2)}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* Artisan Story / Bento Box */}
+            <section id="about" className="py-20 md:py-32 px-6 md:px-12 max-w-7xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
+                
+                <div className="md:col-span-5 flex flex-col justify-center space-y-8 pr-0 md:pr-8">
+                  <h2 className="text-3xl md:text-4xl font-light tracking-wide leading-tight">
+                    A devotion to the <br/> art of baking.
+                  </h2>
+                  <p className="text-neutral-600 font-light leading-relaxed">
+                    We believe in the power of time. 100% organic flour, naturally leavened, and given a 48-hour cold fermentation. The result is bread that is deeply flavorful, highly digestible, and unmistakably ours.
+                  </p>
+                  <a href="#" onClick={(e) => e.preventDefault()} className="inline-flex items-center text-sm font-medium tracking-wide uppercase text-neutral-900 hover:text-[#8BA88E] transition-colors group w-fit">
+                    Read our story <ArrowRight size={16} strokeWidth={1.5} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  </a>
+                </div>
+
+                <div className="md:col-span-7 grid grid-cols-2 gap-4 md:gap-6">
+                  <div className="aspect-square bg-neutral-200 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1596706911674-897db9ed3fc4?auto=format&fit=crop&q=80&w=800" alt="Flour dusting" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+                  </div>
+                  <div className="aspect-[3/4] bg-neutral-200 overflow-hidden -mt-8 md:-mt-16">
+                    <img src="https://images.unsplash.com/photo-1505253758473-96b7015fcd40?auto=format&fit=crop&q=80&w=800" alt="Scoring bread" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+                  </div>
+                </div>
+
+              </div>
+            </section>
+          </>
+        ) : (
+          /* Journal View */
+          <section className="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto min-h-screen">
+            <div className="text-center max-w-2xl mx-auto mb-16 md:mb-24">
+              <h1 className="text-4xl md:text-5xl font-light tracking-wide mb-6 text-neutral-900">The Journal</h1>
+              <p className="text-neutral-500 font-light text-lg">Notes, recipes, and dispatches from our ovens to your home.</p>
             </div>
-            <div className="aspect-[3/4] bg-neutral-200 overflow-hidden -mt-8 md:-mt-16">
-               <img src="https://images.unsplash.com/photo-1505253758473-96b7015fcd40?auto=format&fit=crop&q=80&w=800" alt="Scoring bread" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
-            </div>
-          </div>
 
-        </div>
-      </section>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+              {ARTICLES.map(article => (
+                <article key={article.id} className="group cursor-pointer flex flex-col h-full">
+                  <div className="relative aspect-[4/3] overflow-hidden bg-neutral-100 mb-6 rounded-sm">
+                    <img 
+                      src={article.image} 
+                      alt={article.title} 
+                      className="w-full h-full object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-105"
+                    />
+                    <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 text-[10px] font-medium uppercase tracking-widest text-neutral-900 shadow-sm">
+                      {article.category}
+                    </div>
+                  </div>
+                  
+                  <div className="flex flex-col flex-1">
+                    <div className="text-[10px] md:text-xs font-medium tracking-widest text-neutral-400 uppercase mb-3">
+                      {article.date} • {article.readTime}
+                    </div>
+                    <h3 className="text-xl md:text-2xl font-light text-neutral-900 tracking-wide mb-3 group-hover:text-[#8BA88E] transition-colors">{article.title}</h3>
+                    <p className="text-neutral-600 font-light text-sm leading-relaxed mb-6 flex-1">
+                      {article.excerpt}
+                    </p>
+                    <div className="flex items-center text-xs font-medium tracking-widest uppercase text-neutral-900 group-hover:text-[#8BA88E] transition-colors mt-auto w-fit">
+                      Read Story <ArrowRight size={14} strokeWidth={1.5} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+      </main>
 
       {/* Minimal Footer */}
       <footer className="bg-neutral-900 text-white pt-20 pb-10 px-6 md:px-12">
