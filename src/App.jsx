@@ -55,7 +55,7 @@ const ARTICLES = [
   },
   {
     id: 4,
-    category: "Recipes",
+    category: "baking process",
     date: "August 30, 2026",
     title: "Reviving Stale Bread",
     excerpt: "Don't let a good loaf go to waste. Simple and rustic ways to turn day-old sourdough into croutons, panzanella, and bread pudding.",
@@ -113,11 +113,11 @@ export default function App() {
 
   return (
     <div className="min-h-screen relative font-sans text-stone-900 bg-stone-50 selection:bg-stone-200">
-      
+
       {/* Global Navigation */}
       <nav className={`fixed top-0 inset-x-0 z-40 transition-all duration-500 border-b ${isScrolled ? 'bg-stone-50/80 backdrop-blur-md border-stone-200 py-4 shadow-sm' : 'bg-transparent border-transparent py-6'}`}>
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
-          
+
           <div className="flex-1 md:hidden flex items-center">
             <button className="p-2 -ml-2 text-stone-600 hover:text-stone-900 transition-colors">
               <Menu size={24} strokeWidth={1.5} />
@@ -126,7 +126,7 @@ export default function App() {
 
           <div className="hidden md:flex flex-1 gap-8 text-sm tracking-wide text-stone-600">
             {['Shop', 'About', 'Journal'].map(page => (
-              <button 
+              <button
                 key={page}
                 onClick={() => navigateTo(page)}
                 className={`hover:text-stone-900 transition-colors duration-300 pb-1 relative ${currentPage === page ? 'text-stone-900' : ''}`}
@@ -146,7 +146,7 @@ export default function App() {
           </div>
 
           <div className="flex-1 flex justify-end">
-            <button 
+            <button
               onClick={() => setIsCartOpen(true)}
               className="relative p-2 -mr-2 text-stone-600 hover:text-stone-900 transition-colors group flex items-center gap-2"
             >
@@ -166,15 +166,15 @@ export default function App() {
 
       {/* Cart Drawer Overlay */}
       <div className={`fixed inset-0 z-50 transition-all duration-500 ${isCartOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
-        <div 
-          className="absolute inset-0 bg-stone-900/40 backdrop-blur-sm transition-opacity duration-500" 
+        <div
+          className="absolute inset-0 bg-stone-900/40 backdrop-blur-sm transition-opacity duration-500"
           onClick={() => setIsCartOpen(false)}
         />
         <div className={`absolute top-0 right-0 h-full w-full max-w-[400px] bg-stone-50 shadow-2xl transform transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col ${isCartOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-          
+
           <div className="flex items-center justify-between p-6 border-b border-stone-200">
             <h2 className="text-xl font-serif tracking-wide">Your Bag ({cartCount})</h2>
-            <button 
+            <button
               onClick={() => setIsCartOpen(false)}
               className="p-2 -mr-2 text-stone-500 hover:text-stone-900 transition-colors rounded-full hover:bg-stone-200/50"
             >
@@ -187,7 +187,7 @@ export default function App() {
               <div className="flex flex-col items-center justify-center h-full text-center text-stone-500 space-y-4">
                 <ShoppingBag size={48} strokeWidth={1} className="text-stone-300" />
                 <p className="tracking-wide">Your bag is empty.</p>
-                <button 
+                <button
                   onClick={() => setIsCartOpen(false)}
                   className="mt-4 px-6 py-2 text-sm tracking-wide border border-stone-300 hover:border-stone-900 transition-colors"
                 >
@@ -208,7 +208,7 @@ export default function App() {
                       </div>
                       <p className="text-xs text-stone-500 mt-1">Qty: {item.quantity}</p>
                     </div>
-                    <button 
+                    <button
                       onClick={() => removeFromCart(item.id)}
                       className="text-xs text-stone-400 hover:text-[#c44536] text-left transition-colors w-fit underline underline-offset-4"
                     >
@@ -248,7 +248,7 @@ export default function App() {
                     Bread, baked by hand and ruled by time.
                   </h1>
                   <div>
-                    <button 
+                    <button
                       onClick={() => document.getElementById('product-grid').scrollIntoView({ behavior: 'smooth' })}
                       className="inline-flex items-center justify-center px-10 py-4 bg-stone-900 text-stone-50 text-sm font-medium tracking-wide hover:bg-[#8f6a48] transition-colors duration-300"
                     >
@@ -257,9 +257,9 @@ export default function App() {
                   </div>
                 </div>
                 <div className="flex-1 w-full relative order-1 lg:order-2 min-h-[300px]">
-                  <img 
-                    src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=1200" 
-                    alt="Fresh artisan bread" 
+                  <img
+                    src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=1200"
+                    alt="Fresh artisan bread"
                     className="absolute inset-0 w-full h-full object-cover object-center"
                   />
                 </div>
@@ -272,17 +272,17 @@ export default function App() {
                 {PRODUCTS.map(product => (
                   <div key={product.id} className="group cursor-pointer flex flex-col">
                     <div className="relative aspect-[4/5] overflow-hidden bg-stone-200 mb-6">
-                      <img 
-                        src={product.image} 
-                        alt={product.name} 
+                      <img
+                        src={product.image}
+                        alt={product.name}
                         className="w-full h-full object-cover object-center mix-blend-multiply transition-transform duration-700 ease-out group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-stone-900/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-6">
-                        <button 
+                        <button
                           onClick={(e) => { e.stopPropagation(); addToCart(product); }}
                           className="px-6 py-3 bg-stone-50 text-stone-900 text-sm font-medium tracking-wide hover:bg-stone-900 hover:text-stone-50 transition-colors duration-300 flex items-center gap-2 transform translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 ease-out shadow-sm"
                         >
-                          Add to Cart 
+                          Add to Cart
                         </button>
                       </div>
                     </div>
@@ -309,16 +309,16 @@ export default function App() {
               {ARTICLES.map(article => (
                 <article key={article.id} className="group cursor-pointer flex flex-col h-full">
                   <div className="relative aspect-[3/4] overflow-hidden bg-stone-200 mb-6">
-                    <img 
-                      src={article.image} 
-                      alt={article.title} 
+                    <img
+                      src={article.image}
+                      alt={article.title}
                       className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105 mix-blend-multiply"
                     />
                     <div className="absolute top-4 left-4 bg-stone-50/90 backdrop-blur-sm px-3 py-1 text-[10px] font-sans font-medium uppercase tracking-widest text-stone-900 shadow-sm">
                       {article.category}
                     </div>
                   </div>
-                  
+
                   <div className="flex flex-col flex-1 text-center items-center">
                     <div className="text-[10px] font-sans font-medium tracking-widest text-stone-400 uppercase mb-4">
                       {article.date}
@@ -352,7 +352,7 @@ export default function App() {
                 </p>
               </div>
               <div className="mt-16 text-2xl md:text-3xl font-serif italic text-stone-600">
-                Baked with love,<br/>
+                Baked with love,<br />
                 <span className="text-stone-900 mt-4 block not-italic font-normal text-xl">The Hearth & Crumb Team</span>
               </div>
             </section>
@@ -427,9 +427,9 @@ export default function App() {
             <div className="flex flex-col justify-end">
               <h4 className="text-sm tracking-widest uppercase text-stone-400 mb-6">Join our newsletter</h4>
               <form className="flex gap-4">
-                <input 
-                  type="email" 
-                  placeholder="Email address" 
+                <input
+                  type="email"
+                  placeholder="Email address"
                   className="bg-transparent border-b border-stone-700 pb-2 px-0 w-full focus:outline-none focus:border-stone-300 transition-colors text-stone-50 placeholder:text-stone-600 font-sans"
                 />
                 <button type="submit" className="text-sm font-medium tracking-widest uppercase hover:text-[#a3b18a] transition-colors pb-2 border-b border-stone-700 hover:border-[#a3b18a]">
