@@ -2,7 +2,6 @@
   "name": "store front",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://mhoover1993.github.io/store-front/",
   "type": "module",
   "scripts": {
     "dev": "vite",
